@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 
-class AuthBotton extends StatelessWidget {
+class AuthButton extends StatelessWidget {
   final String authtext;
   final FaIcon icon;
   final screen;
 
-  const AuthBotton({
+  const AuthButton({
     super.key,
     required this.authtext,
     required this.icon,
     required this.screen,
   });
 
-  void onAuthBotton(BuildContext context) {
+  void onAuthButton(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => screen,
@@ -25,7 +25,7 @@ class AuthBotton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onAuthBotton(context),
+      onTap: () => onAuthButton(context),
       child: FractionallySizedBox(
         widthFactor: 1,
         child: Container(

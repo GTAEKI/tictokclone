@@ -37,13 +37,13 @@ class SignUpScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Gaps.v16,
-              AuthBotton(
-                  screen: UserName(),
+              AuthButton(
+                  screen: UserNameScreen(),
                   icon: FaIcon(FontAwesomeIcons.user),
                   authtext: 'Use phone or email'),
               Gaps.v16,
-              AuthBotton(
-                  screen: UserName(),
+              AuthButton(
+                  screen: UserNameScreen(),
                   icon: FaIcon(FontAwesomeIcons.apple),
                   authtext: 'Continue with Apple'),
             ],
