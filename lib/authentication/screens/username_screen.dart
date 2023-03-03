@@ -18,7 +18,6 @@ class _UserNameScreenState extends State<UserNameScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _userNameController.addListener(() {
       _userName = _userNameController.text;
@@ -92,7 +91,8 @@ class _UserNameScreenState extends State<UserNameScreen> {
             Gaps.v40,
             GestureDetector(
                 onTap: onEmailTap,
-                child: FormButton(disabled: _userName.isEmpty)),
+                child: FormButton(
+                    buttonText: "Next", disabled: _userName.isEmpty)),
           ],
         ),
       ),

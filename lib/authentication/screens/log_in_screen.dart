@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/authentication/screens/login_form_screen.dart';
 import 'package:tiktok_clone/authentication/screens/sign_up_screen.dart';
 import 'package:tiktok_clone/authentication/screens/username_screen.dart';
 import 'package:tiktok_clone/authentication/widget/auth_botton.dart';
@@ -38,7 +39,7 @@ class LogInScreen extends StatelessWidget {
               ),
               Gaps.v16,
               AuthButton(
-                  screen: UserNameScreen(),
+                  screen: LoginFormScreen(),
                   icon: FaIcon(FontAwesomeIcons.user),
                   authtext: 'Use phone or email'),
               Gaps.v16,

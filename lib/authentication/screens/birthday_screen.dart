@@ -16,7 +16,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
   final TextEditingController _birthdayController = TextEditingController();
 
   static DateTime initialDate = DateTime.now();
-  // DateTime initialDate = DateTime.now();
+
   final DateTime _maximumDate = DateTime(
     initialDate.year - 12,
     initialDate.month,
@@ -97,6 +97,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             GestureDetector(
                 onTap: onEmailTap,
                 child: const FormButton(
+                  buttonText: "Next",
                   disabled: false,
                 )),
           ],

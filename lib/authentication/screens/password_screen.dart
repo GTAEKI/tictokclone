@@ -20,7 +20,6 @@ class _PasswordScreenState extends State<PasswordScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _passwordController.addListener(() {
       setState(() {
@@ -185,6 +184,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
               GestureDetector(
                 onTap: _onSubmit,
                 child: FormButton(
+                  buttonText: "Next",
                   disabled:
                       !(_isPasswordValid1() && _isPasswordValid2()), //중요포인트
                 ),
