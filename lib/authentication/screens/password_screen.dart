@@ -35,8 +35,15 @@ class _PasswordScreenState extends State<PasswordScreen> {
     super.dispose();
   }
 
-  bool _isPasswordValid() {
-    return _password.isNotEmpty && _password.length > 8;
+  bool _isPasswordValid1() {
+    final regExp1 = RegExp(r"^(?=.*[A-Za-z])[A-Za-z\d\w\W]{8,20}$");
+    return _password.isNotEmpty && regExp1.hasMatch(_password);
+  }
+
+  bool _isPasswordValid2() {
+    final regExp2 = RegExp(
+        r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$");
+    return _password.isNotEmpty && regExp2.hasMatch(_password);
   }
 
   void _onScaffoldTap() {
@@ -44,7 +51,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
   }
 
   void _onSubmit() {
-    if (!_isPasswordValid()) return;
+    if (!_isPasswordValid1()) return;
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => const BirthdayScreen(),
     ));
@@ -140,11 +147,11 @@ class _PasswordScreenState extends State<PasswordScreen> {
               Row(
                 children: [
                   FaIcon(
-                    _isPasswordValid()
+                    _isPasswordValid1()
                         ? FontAwesomeIcons.circleCheck
                         : FontAwesomeIcons.circleXmark,
                     size: Sizes.size20,
-                    color: _isPasswordValid() ? Colors.green : Colors.red,
+                    color: _isPasswordValid1() ? Colors.green : Colors.red,
                   ),
                   Gaps.h10,
                   const Text(
@@ -159,11 +166,11 @@ class _PasswordScreenState extends State<PasswordScreen> {
               Row(
                 children: [
                   FaIcon(
-                    _isPasswordValid()
+                    _isPasswordValid2()
                         ? FontAwesomeIcons.circleCheck
                         : FontAwesomeIcons.circleXmark,
                     size: Sizes.size20,
-                    color: _isPasswordValid() ? Colors.green : Colors.red,
+                    color: _isPasswordValid2() ? Colors.green : Colors.red,
                   ),
                   Gaps.h10,
                   const Text(
@@ -178,7 +185,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
               GestureDetector(
                 onTap: _onSubmit,
                 child: FormButton(
-                  disabled: !_isPasswordValid(), //중요포인트
+                  disabled:
+                      !(_isPasswordValid1() && _isPasswordValid2()), //중요포인트
                 ),
               ),
             ],
