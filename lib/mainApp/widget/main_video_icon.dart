@@ -24,7 +24,7 @@ class _MainVideoIconState extends State<MainVideoIcon> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: SystemMouseCursors.basic,
+      cursor: SystemMouseCursors.click,
       onEnter: _onHover,
       onExit: _onHover,
       child: Stack(
@@ -47,12 +47,17 @@ class _MainVideoIconState extends State<MainVideoIcon> {
           ),
           Positioned(
             left: 15,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-              height: 35,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(Sizes.size11)),
+            child: AnimatedOpacity(
+              opacity: _mainVideoIconState ? 0 : 1,
+              duration: const Duration(milliseconds: 300),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                height: 35,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(Sizes.size11)),
+              ),
             ),
           ),
           Container(
@@ -60,7 +65,9 @@ class _MainVideoIconState extends State<MainVideoIcon> {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             height: 35,
             decoration: BoxDecoration(
-              color: _mainVideoIconState ? Colors.amber : Colors.white,
+              color: _mainVideoIconState
+                  ? Theme.of(context).primaryColor
+                  : Colors.white,
               borderRadius: BorderRadius.circular(Sizes.size14),
             ),
             child: const FaIcon(FontAwesomeIcons.plus),
