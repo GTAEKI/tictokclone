@@ -4,6 +4,7 @@ import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/mainApp/widget/main_navigation_icon.dart';
 import 'package:tiktok_clone/mainApp/widget/main_video_icon.dart';
+import 'package:tiktok_clone/video/screen/timeline_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -14,24 +15,6 @@ class MainNavigationScreen extends StatefulWidget {
 
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedindex = 0;
-
-  final screens = [
-    const Center(
-      child: Text("Home"),
-    ),
-    const Center(
-      child: Text("Search"),
-    ),
-    const Center(
-      child: Text("Search"),
-    ),
-    const Center(
-      child: Text("Search"),
-    ),
-    const Center(
-      child: Text("Search"),
-    ),
-  ];
 
   _onTap(int index) {
     setState(() {
@@ -55,7 +38,24 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_selectedindex],
+      body: Stack(children: [
+        Offstage(
+          offstage: _selectedindex != 0,
+          child: const VideoTimelineScreen(),
+        ),
+        Offstage(
+          offstage: _selectedindex != 1,
+          child: Container(),
+        ),
+        Offstage(
+          offstage: _selectedindex != 3,
+          child: Container(),
+        ),
+        Offstage(
+          offstage: _selectedindex != 4,
+          child: Container(),
+        ),
+      ]),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         child: Padding(
