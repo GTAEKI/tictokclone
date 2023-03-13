@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tiktok_clone/authentication/screens/login_form_screen.dart';
-import 'package:tiktok_clone/authentication/screens/sign_up_screen.dart';
-import 'package:tiktok_clone/authentication/screens/username_screen.dart';
-import 'package:tiktok_clone/authentication/widget/auth_botton.dart';
+import 'package:tiktok_clone/features/authentication/screens/login_form_screen.dart';
+import 'package:tiktok_clone/features/authentication/screens/sign_up_screen.dart';
+import 'package:tiktok_clone/features/authentication/screens/username_screen.dart';
+import 'package:tiktok_clone/features/authentication/widget/auth_botton.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 

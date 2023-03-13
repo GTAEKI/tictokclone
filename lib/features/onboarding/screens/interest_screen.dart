@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/onboarding/screens/tutorial_screen.dart';
-import 'package:tiktok_clone/onboarding/widget/interest_button.dart';
+import 'package:tiktok_clone/features/onboarding/screens/tutorial_screen.dart';
+import 'package:tiktok_clone/features/onboarding/widget/interest_button.dart';
 
 const interests = [
   //interest 모음

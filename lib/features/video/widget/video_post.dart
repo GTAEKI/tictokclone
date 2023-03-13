@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/video/widget/id_coment.dart';
+import 'package:tiktok_clone/features/video/screen/coment_sheet_screen.dart';
+import 'package:tiktok_clone/features/video/widget/id_coment.dart';
+import 'package:tiktok_clone/features/video/widget/video_emoji.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -75,8 +78,13 @@ class _VideoPostState extends State<VideoPost>
   }
 
   _onVisibilityChanged(VisibilityInfo info) {
-    if (info.visibleFraction == 1 && !_videoPlayerController.value.isPlaying) {
+    if (info.visibleFraction == 1 &&
+        !_isPaused &&
+        !_videoPlayerController.value.isPlaying) {
       _videoPlayerController.play();
+    }
+    if (_videoPlayerController.value.isPlaying && info.visibleFraction == 0) {
+      _videoPlayerController.pause();
     }
   }
 
@@ -98,6 +106,19 @@ class _VideoPostState extends State<VideoPost>
     setState(() {});
   }
 
+  _onBottomSheet(BuildContext context) async {
+    if (_videoPlayerController.value.isPlaying) {
+      _togglePause();
+    }
+    await showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const ComentBottomScreen(),
+    );
+    _togglePause();
+  }
+
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
@@ -116,7 +137,6 @@ class _VideoPostState extends State<VideoPost>
             //Toggle 제스쳐디텍터
             child: GestureDetector(
               onTap: _togglePause,
-              onLongPress: _togglePause,
             ),
           ),
           Positioned.fill(
@@ -144,46 +164,74 @@ class _VideoPostState extends State<VideoPost>
             ),
           ),
           Positioned(
-              bottom: 10,
-              left: 20,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  AnimatedContainer(
-                      duration: _animationDuration,
-                      child: _changeSentence
-                          ? const VideoComent(
-                              id: "@GTAEK",
-                              coment:
-                                  "It's in front of my house!!!\ntoday is very nice weather\n")
-                          : const VideoComent(
-                              id: "@GTAEK",
-                              coment: "It's in front of my house")),
-                  GestureDetector(
-                    onTap: _seeMore,
-                    child: SizedBox(
-                      child: _changeSentence
-                          ? const Text(
-                              "..down",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: Sizes.size14,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            )
-                          : const Text(
-                              "..See more",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: Sizes.size14,
-                                fontWeight: FontWeight.w600,
-                              ),
+            bottom: 20,
+            left: 10,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AnimatedContainer(
+                  duration: _animationDuration,
+                  child: _changeSentence
+                      ? const VideoComent(
+                          id: "@GTAEK",
+                          coment:
+                              "It's in front of my house!!!\ntoday is very nice weather\n",
+                        )
+                      : const VideoComent(
+                          id: "@GTAEK",
+                          coment: "It's in front of my house",
+                        ),
+                ),
+                GestureDetector(
+                  onTap: _seeMore,
+                  child: SizedBox(
+                    child: _changeSentence
+                        ? const Text(
+                            "..down",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: Sizes.size14,
+                              fontWeight: FontWeight.w600,
                             ),
-                    ),
+                          )
+                        : const Text(
+                            "..See more",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: Sizes.size14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
                   ),
-                ],
-              ))
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            right: 10,
+            bottom: 20,
+            child: Column(
+              children: [
+                const CircleAvatar(
+                  foregroundImage: NetworkImage(
+                      "https://avatars.githubusercontent.com/u/125863048?v=4"),
+                  radius: 20,
+                ),
+                Gaps.v28,
+                const VideoEmoji(
+                    count: "2.9M", icon: FontAwesomeIcons.solidHeart),
+                Gaps.v28,
+                GestureDetector(
+                  onTap: () => _onBottomSheet(context),
+                  child: const VideoEmoji(
+                      count: "33.0K", icon: FontAwesomeIcons.solidCommentDots),
+                ),
+                Gaps.v28,
+                const VideoEmoji(count: "Share", icon: FontAwesomeIcons.share),
+              ],
+            ),
+          ),
         ],
       ),
     );

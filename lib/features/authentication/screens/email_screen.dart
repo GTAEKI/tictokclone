@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_clone/authentication/screens/password_screen.dart';
-import 'package:tiktok_clone/authentication/widget/form_button.dart';
+import 'package:tiktok_clone/features/authentication/screens/password_screen.dart';
+import 'package:tiktok_clone/features/authentication/widget/form_button.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 

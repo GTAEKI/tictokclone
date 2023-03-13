@@ -7,6 +7,7 @@ class MainNavigationIcon extends StatelessWidget {
   final IconData mainIcon;
   final bool isSelected;
   final Function onTap;
+  final int selectedindex;
 
   const MainNavigationIcon({
     super.key,
@@ -14,6 +15,7 @@ class MainNavigationIcon extends StatelessWidget {
     required this.mainLabel,
     required this.isSelected,
     required this.onTap,
+    required this.selectedindex,
   });
 
   @override
@@ -22,7 +24,7 @@ class MainNavigationIcon extends StatelessWidget {
       child: GestureDetector(
         onTap: () => onTap(),
         child: Container(
-          color: Colors.black,
+          color: selectedindex == 0 ? Colors.black : Colors.white,
           child: AnimatedOpacity(
             opacity: isSelected ? 1 : 0.6,
             duration: const Duration(milliseconds: 1),
@@ -32,12 +34,13 @@ class MainNavigationIcon extends StatelessWidget {
               children: [
                 FaIcon(
                   mainIcon,
-                  color: Colors.white,
+                  color: selectedindex == 0 ? Colors.white : Colors.black,
                 ),
                 Gaps.v5,
                 Text(
                   mainLabel,
-                  style: const TextStyle(color: Colors.white),
+                  style: TextStyle(
+                      color: selectedindex == 0 ? Colors.white : Colors.black),
                 ),
               ],
             ),

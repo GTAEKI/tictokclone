@@ -5,7 +5,10 @@ import 'package:tiktok_clone/constants/sizes.dart';
 class MainVideoIcon extends StatefulWidget {
   const MainVideoIcon({
     Key? key,
+    required this.inverted,
   }) : super(key: key);
+
+  final bool inverted;
 
   @override
   State<MainVideoIcon> createState() => _MainVideoIconState();
@@ -65,12 +68,13 @@ class _MainVideoIconState extends State<MainVideoIcon> {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             height: 35,
             decoration: BoxDecoration(
-              color: _mainVideoIconState
-                  ? Theme.of(context).primaryColor
-                  : Colors.white,
+              color: widget.inverted ? Colors.black : Colors.white,
               borderRadius: BorderRadius.circular(Sizes.size14),
             ),
-            child: const FaIcon(FontAwesomeIcons.plus),
+            child: FaIcon(
+              FontAwesomeIcons.plus,
+              color: widget.inverted ? Colors.white : Colors.black,
+            ),
           ),
         ],
       ),

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/mainApp/widget/main_navigation_icon.dart';
-import 'package:tiktok_clone/mainApp/widget/main_video_icon.dart';
-import 'package:tiktok_clone/video/screen/timeline_screen.dart';
+import 'package:tiktok_clone/features/mainApp/widget/main_navigation_icon.dart';
+import 'package:tiktok_clone/features/mainApp/widget/main_video_icon.dart';
+import 'package:tiktok_clone/features/video/screens/timeline_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   const MainNavigationScreen({super.key});
@@ -38,6 +38,8 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      backgroundColor: _selectedindex == 0 ? Colors.black54 : Colors.white,
       body: Stack(children: [
         Offstage(
           offstage: _selectedindex != 0,
@@ -57,7 +59,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         ),
       ]),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
+        color: _selectedindex == 0 ? Colors.black : Colors.white,
         child: Padding(
           padding: const EdgeInsets.symmetric(
               horizontal: Sizes.size24, vertical: Sizes.size12),
@@ -70,17 +72,21 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 mainLabel: "Home",
                 isSelected: _selectedindex == 0,
                 onTap: () => _onTap(0),
+                selectedindex: _selectedindex,
               ),
               MainNavigationIcon(
                 mainIcon: FontAwesomeIcons.magnifyingGlass,
                 mainLabel: "Discover",
                 isSelected: _selectedindex == 1,
                 onTap: () => _onTap(1),
+                selectedindex: _selectedindex,
               ),
               Gaps.h10,
               GestureDetector(
                 onTap: _mainVideoScreen,
-                child: const MainVideoIcon(),
+                child: MainVideoIcon(
+                  inverted: _selectedindex != 0,
+                ),
               ),
               Gaps.h10,
               MainNavigationIcon(
@@ -88,12 +94,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 mainLabel: "Inbox",
                 isSelected: _selectedindex == 3,
                 onTap: () => _onTap(3),
+                selectedindex: _selectedindex,
               ),
               MainNavigationIcon(
                 mainIcon: FontAwesomeIcons.user,
                 mainLabel: "User",
                 isSelected: _selectedindex == 4,
                 onTap: () => _onTap(4),
+                selectedindex: _selectedindex,
               ),
             ],
           ),
