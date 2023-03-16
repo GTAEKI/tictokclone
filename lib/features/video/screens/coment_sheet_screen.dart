@@ -35,11 +35,17 @@ class _ComentBottomScreenState extends State<ComentBottomScreen> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.7,
+      height: size.height * 0.73,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Sizes.size14),
