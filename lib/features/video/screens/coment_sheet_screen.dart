@@ -148,61 +148,66 @@ class _ComentBottomScreenState extends State<ComentBottomScreen> {
                           foregroundImage: NetworkImage(_profileUrl),
                         ),
                         Gaps.h10,
-                        TextField(
-                          onTap: _onStartWriting,
-                          textInputAction: TextInputAction.newline,
-                          expands: true,
-                          minLines: null,
-                          maxLines: null,
-                          cursorColor: Theme.of(context).primaryColor,
-                          decoration: InputDecoration(
-                            suffixIcon: Padding(
-                              padding: const EdgeInsets.only(
-                                right: Sizes.size10,
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const FaIcon(
-                                    FontAwesomeIcons.at,
-                                    color: Colors.black54,
+                        Expanded(
+                          child: SizedBox(
+                            height: Sizes.size44,
+                            child: TextField(
+                              onTap: _onStartWriting,
+                              textInputAction: TextInputAction.newline,
+                              expands: true,
+                              minLines: null,
+                              maxLines: null,
+                              cursorColor: Theme.of(context).primaryColor,
+                              decoration: InputDecoration(
+                                suffixIcon: Padding(
+                                  padding: const EdgeInsets.only(
+                                    right: Sizes.size10,
                                   ),
-                                  Gaps.h14,
-                                  const FaIcon(
-                                    FontAwesomeIcons.gift,
-                                    color: Colors.black54,
-                                  ),
-                                  Gaps.h14,
-                                  const FaIcon(
-                                    FontAwesomeIcons.faceSmile,
-                                    color: Colors.black54,
-                                  ),
-                                  if (_isWriting)
-                                    Row(
-                                      children: [
-                                        Gaps.h14,
-                                        GestureDetector(
-                                          onTap: _stopWriting,
-                                          child: FaIcon(
-                                            FontAwesomeIcons.arrowRight,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      const FaIcon(
+                                        FontAwesomeIcons.at,
+                                        color: Colors.black54,
+                                      ),
+                                      Gaps.h14,
+                                      const FaIcon(
+                                        FontAwesomeIcons.gift,
+                                        color: Colors.black54,
+                                      ),
+                                      Gaps.h14,
+                                      const FaIcon(
+                                        FontAwesomeIcons.faceSmile,
+                                        color: Colors.black54,
+                                      ),
+                                      if (_isWriting)
+                                        Row(
+                                          children: [
+                                            Gaps.h14,
+                                            GestureDetector(
+                                              onTap: _stopWriting,
+                                              child: FaIcon(
+                                                FontAwesomeIcons.arrowRight,
+                                                color: Theme.of(context)
+                                                    .primaryColor,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                ],
+                                    ],
+                                  ),
+                                ),
+                                hintText: "Add comment",
+                                border: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.circular(Sizes.size10),
+                                    borderSide: BorderSide.none),
+                                filled: true,
+                                fillColor: Colors.grey.shade200,
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: Sizes.size10,
+                                ),
                               ),
-                            ),
-                            hintText: "Add comment",
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.circular(Sizes.size10),
-                                borderSide: BorderSide.none),
-                            filled: true,
-                            fillColor: Colors.grey.shade200,
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.size10,
                             ),
                           ),
                         ),

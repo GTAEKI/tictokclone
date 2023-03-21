@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/screens/log_in_screen.dart';
 import 'package:tiktok_clone/features/mainApp/screens/main_navigation_screen.dart';
+import 'package:tiktok_clone/features/mainApp/widget/main_navigation_icon.dart';
 
 void main() {
   runApp(const TicTokApp());
@@ -15,6 +17,7 @@ class TicTokApp extends StatelessWidget {
     return MaterialApp(
       title: 'TicTok Clone',
       theme: ThemeData(
+        highlightColor: Colors.transparent,
         textSelectionTheme: const TextSelectionThemeData(
           cursorColor: Color(0xffe9435a),
         ),
