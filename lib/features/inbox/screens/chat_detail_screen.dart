@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
+import 'package:tiktok_clone/constants/sizes.dart';
 
 class ChatDetailScreen extends StatelessWidget {
   const ChatDetailScreen({super.key});
@@ -9,15 +10,31 @@ class ChatDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 20,
-        titleSpacing: 0,
         title: ListTile(
-          leading: const CircleAvatar(
-            radius: 30,
-            foregroundImage: NetworkImage(
-              "https://avatars.githubusercontent.com/u/3612017",
-            ),
-            child: Text('니꼬'),
+          horizontalTitleGap: Sizes.size8,
+          contentPadding: EdgeInsets.zero,
+          leading: Stack(
+            children: [
+              const CircleAvatar(
+                foregroundImage: NetworkImage(
+                  "https://avatars.githubusercontent.com/u/3612017",
+                ),
+                child: Text('니꼬'),
+              ),
+              Positioned(
+                bottom: -2,
+                right: -2,
+                width: 20,
+                height: 20,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.green,
+                    border: Border.all(color: Colors.white, width: Sizes.size3),
+                  ),
+                ),
+              ),
+            ],
           ),
           title: const Text(
             "Lynn",
@@ -30,9 +47,14 @@ class ChatDetailScreen extends StatelessWidget {
               FaIcon(
                 FontAwesomeIcons.flag,
                 color: Colors.black,
+                size: Sizes.size20,
               ),
               Gaps.h24,
-              FaIcon(FontAwesomeIcons.circleDot, color: Colors.black)
+              FaIcon(
+                FontAwesomeIcons.ellipsis,
+                color: Colors.black,
+                size: Sizes.size20,
+              )
             ],
           ),
         ),
